@@ -8,14 +8,14 @@
 <div class="content">
     <h1 style="text-align: center">Ache a menor rota</h1>
     <h4 style="text-align: center">aeroportos disponiveis:</h4>
-
-    <table>
+    
+    {% for task in tasks %}
         <tr>
-            <th>'Task'</th>
-            <th>'Added'</th>
-            <th>'Actions'</th>
+            <td>
+                <p1>task</p1>
+            </td>
         </tr>
-    </table>
+    {% endfor %}
  
     <div class="form">
         <form action="/" method="POST">
