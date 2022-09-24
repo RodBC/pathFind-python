@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Path Finder</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Ache a menor rota</h1>
+    <h4 style="text-align: center">aeroportos disponiveis:</h4>
+
+    <table>
+        <tr>
+            <th>'Task'</th>
+            <th>'Added'</th>
+            <th>'Actions'</th>
+        </tr>
+    </table>
+ 
+    <div class="form">
+        <form action="/" method="POST">
+            <p>partida</p><input type="text" name="content" id="content">
+            <p>chegada</p><input type="text" name="content" id="content">
+            <input type="submit" value="calcule a rota">
+        </form>
+    </div>
+</div>
+{% endblock %}
