@@ -1,36 +1,44 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/main.css" />
+    {% block head %}
+        <title>
+            Path Finder
+        </title>
+    {% endblock %}
+</head>
+<body>
 
-{% block head %}
-<title>Path Finder</title>
-{% endblock %}
-
-{% block body %}
-<div class="content">
-    <h1 style="text-align: center">Ache a menor rota</h1>
-    <h4 style="text-align: center">aeroportos disponiveis:</h4>
+    {% block body %}
+    <div class="content">
+        <h1 style="text-align: center">Ache a menor rota</h1>
+        <h4 style="text-align: center">aeroportos disponiveis:</h4>
+        
+        {% for task in tasks %}
+            <tr>
+                <td>
+                    {{task}}
+                </td>
+            </tr>
+        {% endfor %}
+     
+        <div class="form">
+            <form action="/" method="POST">
+                <label for="origem" class="form__label">origem:</label>
+                <input type="text" name="origem" id="origem">
+                <label for="destino" class="form__label">destino:</label>
+                <input type="text" name="destino" id="destino">
     
-    {% for task in tasks %}
-        <tr>
-            <td>
-                {{task}}
-            </td>
-        </tr>
-    {% endfor %}
- 
-    <div class="form">
-        <form action="/" method="POST">
-            <label for="origem" class="form__label">origem:</label>
-            <input type="text" name="origem" id="origem">
-            <label for="destino" class="form__label">destino:</label>
-            <input type="text" name="destino" id="destino">
-
-            <input type="submit" value="calcule a rota">
-        </form>
+                <input type="submit" value="calcule a rota">
+            </form>
+        </div>
     </div>
-</div>
-
-{% if origem != '' and destino != '' %}
-    <div class="resultado">{{resultado}}</div>
-{% endif %}
-
-{% endblock %}
+    
+    {% if origem != '' and destino != '' %}
+        <div class="resultado">{{resultado}}</div>
+    {% endif %}
+    
+    {% endblock %}    
+</body>
+</html>

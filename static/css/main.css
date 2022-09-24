@@ -28,9 +28,19 @@ td {
 }
 
 .form {
+    display: flex;
+    width: 10px;
+    height: 10px;
+    flex-direction: row;
     margin-top: 20px;
 }
 
 #content {
     width: 70%;
+}
+.resultado{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: aqua;
 }

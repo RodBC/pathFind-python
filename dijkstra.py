@@ -133,8 +133,7 @@ print(f"lista de aeroportos: {g.Locais}")
 
 '''Imprime o output'''
 
-def getRoute(origem, destino):
-    Bool = False
+def getRoute(origem, destino, Bool=False):
     while Bool != True:
         Resultado = g.calcula_caminho(origem, destino)
 

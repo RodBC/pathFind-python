@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from dijkstra import getRoute
+from dijkstra import *
 
 app = Flask(__name__)
 lista = []
