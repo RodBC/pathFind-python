@@ -17,8 +17,8 @@ def getData():
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
-        origem = request.form.get('origem')
-        destino = request.form.get('destino')
+        origem = request.form.get('origem').upper()
+        destino = request.form.get('destino').upper()
         resultado = getRoute(origem, destino)
         return render_template('index.html', tasks=getData(), resultado=resultado)
     else:    
