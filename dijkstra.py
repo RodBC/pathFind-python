@@ -97,7 +97,7 @@ class Grafo:
                     lista_final.append(i)
                     lista_final.append("-->")
                 lista_final.pop(-1)
-                return (f"O menor caminho custa: {tamanho_caminho}\n"
+                return (f"O menor caminho custa: {tamanho_caminho} km ||  "
                        f"O menor caminho é: {lista_final}")
             else:
                 return (f"Não existe caminhos entre {print_origem} e {print_destino}")
@@ -130,21 +130,16 @@ with arquivo2:
 
 print(f"lista de aeroportos: {g.Locais}")
 
-origem = input("Digite uma origem: ")
-destino = input("Digite um destino: ")
-
 
 '''Imprime o output'''
 
-Bool = False
+def getRoute(origem, destino):
+    Bool = False
+    while Bool != True:
+        Resultado = g.calcula_caminho(origem, destino)
 
-while Bool != True:
-    Resultado = g.calcula_caminho(origem, destino)
-
-    if Resultado == False:
-        print("Esse Aeroporto não existe na nossa base dados! Tente outro local.")
-        origem = input("Digite uma origem: ")
-        destino = input("Digite um destino: ")
-    else:
-        Bool = True
-        print(Resultado)
+        if Resultado == False:
+            return("Esse Aeroporto não existe na nossa base dados! Tente outro local.")
+        else:
+            Bool = True
+            return(Resultado)

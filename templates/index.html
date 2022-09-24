@@ -28,4 +28,9 @@
         </form>
     </div>
 </div>
+
+{% if origem != '' and destino != '' %}
+    <div class="resultado">{{resultado}}</div>
+{% endif %}
+
 {% endblock %}

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from dijkstra import getRoute
 
 app = Flask(__name__)
 lista = []
@@ -15,12 +16,13 @@ def getData():
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    origem = request.form.get('origem')
-    destino = request.form.get('destino')
-    # if request.method == 'POST':
-    #     pass #aqui entra o código do resultado, e um botão para voltar
-    # else:
-    return render_template('index.html', tasks=getData())
+    if request.method == 'POST':
+        origem = request.form.get('origem')
+        destino = request.form.get('destino')
+        resultado = getRoute(origem, destino)
+        return render_template('index.html', tasks=getData(), resultado=resultado)
+    else:    
+        return render_template('index.html', tasks=getData())
 
 
 app.run(debug=True)
