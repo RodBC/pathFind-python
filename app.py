@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+lista = []
 
 
 def getData():
@@ -13,12 +14,13 @@ def getData():
     return tasks
 
 @app.route("/", methods=["GET", "POST"])
-
-def index():                
-    if request.method == 'POST':
-        pass #aqui entra o código do resultado, e um botão para voltar
-    else:
-        return render_template('index.html', tasks=getData())
+def index():
+    origem = request.form.get('origem')
+    destino = request.form.get('destino')
+    # if request.method == 'POST':
+    #     pass #aqui entra o código do resultado, e um botão para voltar
+    # else:
+    return render_template('index.html', tasks=getData())
 
 
 app.run(debug=True)
