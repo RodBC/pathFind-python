@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -11,9 +11,14 @@ def getData():
             if origem not in tasks:
                 tasks.append(origem)
     return tasks
-@app.route('/')
+
+@app.route("/", methods=["GET", "POST"])
+
 def index():                
-    return render_template('index.html', tasks=getData())
+    if request.method == 'POST':
+        pass #aqui entra o código do resultado, e um botão para voltar
+    else:
+        return render_template('index.html', tasks=getData())
 
 
 app.run(debug=True)
