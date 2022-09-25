@@ -1,1 +1,3 @@
-projetinho de algoritmos verão web
+projetinho de algoritmos versão web
+
+requerimentos: flask

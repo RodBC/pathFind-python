@@ -16,10 +16,10 @@
         <h1 style="text-align: center">Ache a menor rota</h1>
         <h4 style="text-align: center">aeroportos disponiveis:</h4>
         
-        {% for task in tasks %}
+        {% for airport in airports %}
             <tr>
                 <td>
-                    {{task}}
+                    {{airport}}
                 </td>
             </tr>
         {% endfor %}
@@ -36,12 +36,9 @@
         </div>
     </div>
     
-    {% if origem != '' and destino != '' %}
+{% if resultado != '' %}
         <div class="resultado">{{resultado}}</div>
-    {% endif %}
-{% if visualize != False %}
-    <div class="resultado">{{visualize}}</div>
-{% endif %}  
-    {% endblock %}    
+{% endif %}
+{% endblock %}    
 </body>
 </html>
