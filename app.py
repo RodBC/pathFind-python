@@ -19,7 +19,7 @@ def index():
     if request.method == 'POST':
         origem = request.form.get('origem').upper()
         destino = request.form.get('destino').upper()
-        resultado = getRoute(origem, destino)
+        resultado = g.calcula_caminho(origem, destino)
         return render_template('index.html', tasks=getData(), resultado=resultado)
     else:    
         return render_template('index.html', tasks=getData())

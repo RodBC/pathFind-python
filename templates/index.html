@@ -38,7 +38,9 @@
     {% if origem != '' and destino != '' %}
         <div class="resultado">{{resultado}}</div>
     {% endif %}
-    
+{% if visualize != False %}
+    <div class="resultado">{{visualize}}</div>
+{% endif %}  
     {% endblock %}    
 </body>
 </html>

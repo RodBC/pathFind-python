@@ -1,4 +1,7 @@
 from collections import defaultdict
+import matplotlib.pyplot as plt
+import networkx as nx
+import PySimpleGUI as PSG
 
 class MinHeap:
     def __init__(self):
@@ -46,6 +49,7 @@ class Grafo:
     def __init__(self):
         self.grafo = defaultdict(list)
         self.Locais = []
+        self.lista_PESO = []
 
     def add_vertice(self, origem, destino, peso):
         valor_origem = self.Locais.index(origem)
@@ -77,48 +81,52 @@ class Grafo:
         return peso[destino], antecessor
 
     def calcula_caminho(self, origem, destino):
-        if origem not in g.Locais or destino not in g.Locais:
-            return False
-        else:
             print_origem = origem
             print_destino = destino
+
             origem = g.Locais.index(origem)
             destino = g.Locais.index(destino)
-            caminho = []
+
+
             tamanho_caminho, antecessores = g.dijkstra(origem, destino)
+            caminho = []
 
             while destino != None:
                 x = g.Locais[destino]
                 caminho.append(x)
                 destino = antecessores[destino]
+
             if tamanho_caminho != None:
                 lista_final = []
+                string_final = ""
+                result = []
+
                 for i in caminho[::-1]:
                     lista_final.append(i)
-                    lista_final.append("-->")
-                lista_final.pop(-1)
-                return (f"O menor caminho custa: {tamanho_caminho} km ||  "
-                       f"O menor caminho é: {lista_final}")
+                    string_final +=i
+                    string_final += "--> "
+
+                string_final = string_final[:-4]
+                result.append(f"Distância: {tamanho_caminho * 1.60934:.1f} Km  ")
+                result.append(f" pelo caminho --{ string_final}")
+                imprime = "".join(result)
+                return("MENOR CAMINHO:", imprime)
             else:
-                return (f"Não existe caminhos entre {print_origem} e {print_destino}")
+                return(f"Não existe caminhos entre {print_origem} e {print_destino}")
 
 g = Grafo()
-
-
-'''Salva todos os locais em uma lista'''
-
+graph = []
 arquivo = open("Dados.txt", "r")
 
 with arquivo:
     for line in arquivo:
-        origem, distancia, w = line.split()
+        origem, dest, w = line.split()
         if origem not in g.Locais:
             g.Locais.append(origem)
-        if distancia not in g.Locais:
-            g.Locais.append(distancia)
-
-
-'''adiciona vertices e seus pesos no grafo'''
+        if dest not in g.Locais:
+            g.Locais.append(dest)
+        g.lista_PESO.append(w)
+        graph.append([origem, dest])
 
 arquivo2 = open("Dados.txt", "r")
 
@@ -127,18 +135,3 @@ with arquivo2:
         origem, destino, peso = line.split()
         g.add_vertice(origem, destino, int(peso))
 
-
-print(f"lista de aeroportos: {g.Locais}")
-
-
-'''Imprime o output'''
-
-def getRoute(origem, destino, Bool=False):
-    while Bool != True:
-        Resultado = g.calcula_caminho(origem, destino)
-
-        if Resultado == False:
-            return("Esse Aeroporto não existe na nossa base dados! Tente outro local.")
-        else:
-            Bool = True
-            return(Resultado)
